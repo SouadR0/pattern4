@@ -1,8 +1,15 @@
 
+
+
+//LAYAN ALNOUMANIII
 package com.mycompany.company.system;
 
 
-public interface SalaryCalculatorStrategy {
+//calculates the salary
+public interface SalaryCalculatorStrategy
+    {
+   double calculateSalary(Employee employee);
+    }
+
     
-    double calculateSalary(Employee employee);
-}
+
