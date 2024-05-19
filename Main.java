@@ -6,7 +6,10 @@ public class Main {
         Employee companyHead = new Employee("TEST1", "1AE", 300, 50, add1);
         Employee dept1head = new Employee("TEST2", "12AE", 300, 50, add1);
         Employee dept2head = new Employee("TEST3", "13AE", 300, 50, add1);
-        
+
+        //creat an object from the builder 
+        //
+         EmployeeBuilder empBuilder = new EmployeeBuilder();
         
         Employee officeemp1 = new Employee("TES1", "121A", 200, 20, add1);
         Employee officeemp2 = new Employee("TEST2", "121A", 200, 20, add1);
