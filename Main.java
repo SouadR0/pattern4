@@ -1,28 +1,27 @@
+package com.mycompany.company.system;
+
+
 public class Main {
 
     public static void main(String[] args) {
-        
+
         Address add1 = new Address("NY", "LA", "109", "A910");
         Employee companyHead = new Employee("TEST1", "1AE", 300, 50, add1);
         Employee dept1head = new Employee("TEST2", "12AE", 300, 50, add1);
         Employee dept2head = new Employee("TEST3", "13AE", 300, 50, add1);
-
-        //creat an object from the builder 
-        //
-         EmployeeBuilder empBuilder = new EmployeeBuilder();
+        
         
         Employee officeemp1 = new Employee("TES1", "121A", 200, 20, add1);
         Employee officeemp2 = new Employee("TEST2", "121A", 200, 20, add1);
         Employee officeemp3 = new Employee("TES3", "121A", 200, 20, add1);
         Employee officeemp4 = new Employee("TES4", "121A", 200, 20, add1);
-
-
-          officeemp2.setAddressFormatter(new CustomAddressFormatter());
-          officeemp2.setAddressFormatter(new DefaultAddressFormatter());
-          System.out.println(officeemp1.formatAddress());
+        
+        
+        Employee builderEmployee = new EmployeeBuilder().setName("TEST").setAge(39).setId("EST").setSalary(300).setAddress(add1).build(); // Builder design pattern.
+        
 
         // Create the company
-        Company co = new Company("TEST COMPANY", companyHead);
+        Company co =  Company.getCompany("TEST COMPANY", companyHead); // singelton design pattern.
         
         // Create departments
         Department dept1 = new Department("TEST DEPT1", add1, dept1head);
@@ -45,9 +44,27 @@ public class Main {
         dept2.addOffice(off4);
         
         // Add employees to offices
+        
         off1.addEmployee(officeemp1);
         off2.addEmployee(officeemp2);
         off3.addEmployee(officeemp3);
         off4.addEmployee(officeemp4);
+        
+        // Bridge design pattern.
+        officeemp1.setAddressFormatter(new CustomAddressFormatter());
+        officeemp1.formatAddress();
+        officeemp1.setAddressFormatter(new DefaultAddressFormatter());
+        officeemp1.formatAddress();
+        
+        
+        Employee sed = new SeniorEmployeeDecorator(officeemp1).getEmployee(); // Decorator design pattern
+        
+        
+        // Strategy design pattern.
+        officeemp1.setSalaryCalculationStrategy(new SenioritySalaryCalculationStrategy());
+        officeemp1.calculateSalary();
+        officeemp1.setSalaryCalculationStrategy(new StandardSalaryCalculationStrategy());
+        officeemp1.calculateSalary();
+
     }
 }
